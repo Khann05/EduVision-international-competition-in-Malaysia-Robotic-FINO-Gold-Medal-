@@ -41,3 +41,28 @@ Despite competing at the **university level**, this project successfully achieve
 ---
 
 ## 🖥️ Project Structure
+
+---
+
+## 🖼️ Screenshots
+![Home Page](Website%20Display/DisplayHome.png)  
+![Sign In Page](Website%20Display/DisplaySignIn.png)  
+![Class Page](Website%20Display/DisplayClass.png)  
+
+---
+
+## 🎥 Competition Presentation
+A presentation video was prepared for the competition submission.  
+(Available upon request or via external link if required.)
+
+---
+
+## 📝 Notes
+- This repository is published **for portfolio and educational purposes**.
+- Some components may be simplified or sanitized to protect competition and institutional data.
+- Source code reflects real development practices used during the competition.
+
+---
+
+## 📫 Contact
+GitHub: https://github.com/Khan05
