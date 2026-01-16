@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eduvision - YORA – Kanaan School</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="auth.js" defer></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <!-- logo Kanaan → balik ke home -->
+      <a href="index.html#home" class="logo-link">
+        <img src="images/logo-bar.png" alt="Kanaan Logo" class="logo-bar" />
+      </a>
+    </div>
+
+    <nav class="navbar-center">
+      <a href="#home" class="nav-link">
+        <span class="nav-icon"></span> HOME
+      </a>
+
+      <!-- CLASS → langsung ke Homeroom Teachers -->
+      <a href="#about" class="nav-link">
+        CLASS
+      </a>
+
+      <!-- FAQ → halaman terpisah -->
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">ABOUT US</a>
+    </nav>
+
+    <div class="navbar-right">
+      <div class="nav-auth-buttons">
+        <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
+        <a href="signin.html" class="nav-btn nav-btn-solid">Sign In</a>
+      </div>
+      <div class="nav-user-info">
+        <span class="nav-user-name"></span>
+        <span class="nav-user-email"></span>
+        <button type="button" class="nav-logout" onclick="handleLogout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="hero">
+    <div class="hero-bg-pattern"></div>
+
+    <div class="hero-content">
+      <div class="hero-students">
+        <img src="images/hero-eduvission.jpg" alt="Students Eduvision" />
+      </div>
+
+      <p class="hero-tagline">
+        Enhancing school safety and discipline through YORA, our intelligent Youth Outfit Regulation Assistant.
+      </p>
+    </div>
+  </main>
+
+  <!-- HOMEROOM TEACHERS -->
+  <section id="about" class="teachers-section">
+    <h2 class="section-title">Homeroom Teachers</h2>
+
+    <div class="teacher-grid">
+      <!-- 10A -->
+      <article class="teacher-card">
+        <div class="teacher-photo">
+          <img src="images/teacher-10A.png" alt="Homeroom Teacher 10A">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Elisabet Resti Dianingsih, S.Pd.</h3>
+          <p class="teacher-role">Homeroom Teacher – 10A</p>
+          <a href="class-10A.html" class="class-badge">10A</a>
+        </div>
+      </article>
+
+      <!-- 10B -->
+      <article class="teacher-card">
+        <div class="teacher-photo">
+          <img src="images/teacher-10B.png" alt="Homeroom Teacher 10B">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Fransisca Krisna Adyanti Sanjaya, S.S.</h3>
+          <p class="teacher-role">Homeroom Teacher – 10B</p>
+          <a href="class-10B.html" class="class-badge">10B</a>
+        </div>
+      </article>
+
+      <!-- 11A -->
+      <article class="teacher-card">
+        <div class="teacher-photo">
+          <img src="images/teacher-11A.png" alt="Homeroom Teacher 11A">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Trifena Meysia Yusuf, S.Si.</h3>
+          <p class="teacher-role">Homeroom Teacher – 11A</p>
+          <a href="class-11A.html" class="class-badge">11A</a>
+        </div>
+      </article>
+
+      <!-- 11B -->
+      <article class="teacher-card">
+        <div class="teacher-photo">
+          <img src="images/teacher-11B.png" alt="Homeroom Teacher 11B">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Steven Rusny</h3>
+          <p class="teacher-role">Homeroom Teacher – 11B</p>
+          <a href="class-11B.html" class="class-badge">11B</a>
+        </div>
+      </article>
+
+      <!-- 12A -->
+      <article class="teacher-card">
+        <div class="teacher-photo">
+          <img src="images/teacher-12A.png" alt="Homeroom Teacher 12A">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Citra Arie Damanik, S.Pd.</h3>
+          <p class="teacher-role">Homeroom Teacher – 12A</p>
+          <a href="class-12A.html" class="class-badge">12A</a>
+        </div>
+      </article>
+
+      <!-- 12B -->
+      <article class="teacher-card">
+        <div class="teacher-photo">
+          <img src="images/teacher-12B.png" alt="Homeroom Teacher 12B">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Agustina Budi Trisnawati, S.Pd.</h3>
+          <p class="teacher-role">Homeroom Teacher – 12B</p>
+          <a href="class-12B.html" class="class-badge">12B</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- (Section FAQ di bawah ini boleh dibiarkan atau dihapus;
+       navbar sekarang mengarah ke faq.html) -->
+
+  <footer class="footer">
+    © 2025 Eduvision – Kanaan School. All rights reserved.
+  </footer>
+</body>
+</html>

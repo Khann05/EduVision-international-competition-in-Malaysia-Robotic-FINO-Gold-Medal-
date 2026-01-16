@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Class 10A – Eduvision</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <script src="auth.js" defer></script>
+
+  <style>
+    .violations-table td.date-cell {
+      white-space: nowrap;
+    }
+    .class-table-wrapper { margin-top: 8px; }
+    .class-table-top {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 6px;
+    }
+    .class-search-input {
+      max-width: 260px;
+      width: 100%;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.12);
+      font-family: inherit;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .class-search-input:focus {
+      border-color: #236b7f;
+      box-shadow: 0 0 0 2px rgba(35,107,127,0.1);
+    }
+
+    /* ========== WARNING ICON DI NAMA ========== */
+    .student-name-cell {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .violation-flag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #ff4b4b;
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    /* ========== GLOBAL VIOLATION HISTORY PANEL ========== */
+    .viol-history-wrapper {
+      max-width: 1100px;
+      margin: 0 auto 10px;
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      z-index: 2;
+    }
+
+    .viol-history-toggle {
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.12);
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      background: rgba(255,255,255,0.9);
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .viol-history-toggle:hover {
+      border-color: #236b7f;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    }
+    .viol-history-toggle .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff4b4b;
+    }
+
+    .viol-history-panel {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      width: 430px;
+      max-height: 360px;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 14px 16px 10px;
+      display: none;
+      overflow: hidden;
+    }
+    .viol-history-panel.open {
+      display: block;
+    }
+    .viol-history-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .viol-history-header h3 {
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .viol-history-subtitle {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+    }
+    .viol-history-close {
+      border: none;
+      background: transparent;
+      font-size: 1.1rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 2px 6px;
+    }
+    .viol-history-body {
+      max-height: 280px;
+      overflow: auto;
+      border-radius: 14px;
+      background: #f9fafb;
+      padding: 6px;
+    }
+    .viol-history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.75rem;
+    }
+    .viol-history-table th,
+    .viol-history-table td {
+      padding: 4px 6px;
+      text-align: left;
+      white-space: nowrap;
+    }
+    .viol-history-table th {
+      font-weight: 600;
+      color: #374151;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      background: #f3f4f6;
+      z-index: 1;
+    }
+    .viol-history-table td {
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    .viol-history-table tr:last-child td {
+      border-bottom: none;
+    }
+    .viol-history-name {
+      max-width: 130px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    .viol-history-empty {
+      font-size: 0.8rem;
+      color: #6b7280;
+      padding: 4px 0;
+    }
+  </style>
+</head>
+<body class="inner-page">
+  <header class="navbar">
+    <div class="navbar-left">
+      <a href="index.html#home" class="logo-link">
+        <img src="images/logo-bar.png" alt="Kanaan Logo" class="logo-bar" />
+      </a>
+    </div>
+    <nav class="navbar-center">
+      <a href="index.html#home" class="nav-link">HOME</a>
+      <a href="index.html#about" class="nav-link">CLASS</a>
+      <a href="index.html#faq" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">ABOUT US</a>
+    </nav>
+    <div class="navbar-right">
+      <div class="nav-auth-buttons">
+        <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
+        <a href="signin.html" class="nav-btn nav-btn-solid">Sign In</a>
+      </div>
+      <div class="nav-user-info">
+        <span class="nav-user-name"></span>
+        <span class="nav-user-email"></span>
+        <button type="button" class="nav-logout" onclick="handleLogout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="class-page">
+    <div class="hero-bg-pattern"></div>
+
+    <section class="class-header">
+      <h1>Class 10A</h1>
+      <p>Student Data – Academic Year 2025/2026</p>
+      <a href="index.html#about" class="back-link">← Back to Homeroom Teachers</a>
+    </section>
+
+    <!-- 🔔 GLOBAL VIOLATION HISTORY PANEL (area kuning) -->
+    <section class="viol-history-wrapper">
+      <button type="button" class="viol-history-toggle">
+        <span class="dot"></span>
+        View violation history
+      </button>
+
+      <div class="viol-history-panel">
+        <div class="viol-history-header">
+          <h3>Recent Violations</h3>
+          <button type="button" class="viol-history-close">&times;</button>
+        </div>
+        <div class="viol-history-subtitle">
+          Showing latest records (all students who ever violated).
+        </div>
+        <div class="viol-history-body">
+          <div class="viol-history-empty">Loading...</div>
+          <table class="viol-history-table" style="display:none;">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Violation</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="class-table-wrapper">
+      <div class="class-table-top">
+        <input
+          type="text"
+          id="studentSearch"
+          class="class-search-input"
+          placeholder="Search name..."
+          autocomplete="off"
+        />
+      </div>
+
+      <table class="class-table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Student Name</th>
+            <th>Gender</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2025 Eduvision – Kanaan School. All rights reserved.
+  </footer>
+
+  <script>
+    const ROSTER_URL =
+      "https://api.sheety.co/3ab53c0248a4ec9ed835849c5f401488/dataSiswa/studentData";
+    const VIOLATIONS_URL =
+      "https://api.sheety.co/3ab53c0248a4ec9ed835849c5f401488/dataSiswa/violationData";
+
+    function parseDateTime(row) {
+      const d = (row.date || "").trim();
+      const t = (row.time || "00:00:00").trim();
+      if (!d) return new Date(0);
+      const [day, month, year] = d.split("-").map(Number);
+      const [h = 0, m = 0, s = 0] = t.split(":").map(Number);
+      return new Date(year, month - 1, day, h, m, s);
+    }
+
+    function renderViolations(detailBody, allRowsForStudent, currentPoints) {
+      const violationRows = allRowsForStudent.filter((r) => {
+        const hasReason   = r.reason    && r.reason.trim()    !== "";
+        const hasViolText = r.violation && r.violation.trim() !== "";
+        const hasDate     = r.date      && r.date.trim()      !== "";
+        const hasTime     = r.time      && r.time.trim()      !== "";
+        return hasReason || hasViolText || hasDate || hasTime;
+      });
+
+      detailBody.innerHTML = "";
+
+      if (violationRows.length === 0) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td colspan="5" class="no-viol-message">
+            No violations recorded. Current points: <strong>${currentPoints}</strong>
+          </td>
+        `;
+        detailBody.appendChild(tr);
+        return;
+      }
+
+      violationRows.sort((a, b) => parseDateTime(b) - parseDateTime(a));
+
+      violationRows.forEach((row) => {
+        const date = row.date || "-";
+        const time = row.time || "-";
+        const violText = row.reason || row.violation || "-";
+        const points = row.pointsLeft ?? currentPoints;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="date-cell">${date}</td>
+          <td>${time}</td>
+          <td>${violText}</td>
+          <td>-2 pts</td>
+          <td>${points}</td>
+        `;
+        detailBody.appendChild(tr);
+      });
+    }
+
+    // ===== GLOBAL VIOLATION HISTORY =====
+    function initGlobalViolationHistory(allRows) {
+      const toggleBtn = document.querySelector(".viol-history-toggle");
+      const panel = document.querySelector(".viol-history-panel");
+      const closeBtn = document.querySelector(".viol-history-close");
+      const table = document.querySelector(".viol-history-table");
+      const tbody = table ? table.querySelector("tbody") : null;
+      const emptyText = document.querySelector(".viol-history-empty");
+
+      if (!toggleBtn || !panel || !tbody || !table) return;
+
+      // filter baris pelanggaran yang valid
+      const validRows = allRows.filter((r) => {
+        const hasReason   = r.reason    && r.reason.trim()    !== "";
+        const hasViolText = r.violation && r.violation.trim() !== "";
+        const hasDate     = r.date      && r.date.trim()      !== "";
+        const hasTime     = r.time      && r.time.trim()      !== "";
+        return hasReason || hasViolText || hasDate || hasTime;
+      });
+
+      if (validRows.length === 0) {
+        if (emptyText) {
+          emptyText.textContent = "No violation records yet.";
+        }
+      } else {
+        // sort terbaru dulu
+        validRows.sort((a, b) => parseDateTime(b) - parseDateTime(a));
+
+        tbody.innerHTML = "";
+        const limit = 50; // batasi tampil 50 terakhir
+        validRows.slice(0, limit).forEach((row, idx) => {
+          const name  = (row.name || "-").trim();
+          const cls   = (row["class"] || "-").toString().trim();
+          const date  = row.date || "-";
+          const time  = row.time || "-";
+          const vText = row.reason || row.violation || "-";
+
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${idx + 1}</td>
+            <td class="viol-history-name" title="${name}">${name}</td>
+            <td>${cls}</td>
+            <td>${date}</td>
+            <td>${time}</td>
+            <td>${vText}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+
+        if (emptyText) emptyText.style.display = "none";
+        table.style.display = "table";
+      }
+
+      // toggle buka/tutup panel
+      toggleBtn.addEventListener("click", () => {
+        panel.classList.toggle("open");
+      });
+      if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+          panel.classList.remove("open");
+        });
+      }
+    }
+
+    // ===== LOAD DATA 10A & VIOLATIONS =====
+    async function loadClass10AFromSheety() {
+      try {
+        const [resRoster, resViol] = await Promise.all([
+          fetch(ROSTER_URL, { cache: "no-store" }),
+          fetch(VIOLATIONS_URL, { cache: "no-store" }),
+        ]);
+
+        if (!resRoster.ok) {
+          console.error("Gagal ambil roster:", resRoster.status, await resRoster.text());
+          return;
+        }
+        if (!resViol.ok) {
+          console.error("Gagal ambil violation:", resViol.status, await resViol.text());
+          return;
+        }
+
+        const rosterJson = await resRoster.json();
+        const violJson   = await resViol.json();
+
+        const rosterRows       = rosterJson.studentData   || [];
+        const violationRowsAll = violJson.violationData   || [];
+
+        const roster10A = rosterRows.filter((r) =>
+          (r["class"] || "").toString().toUpperCase().trim() === "10A"
+        );
+
+        const rosterByName = {};
+        for (const r of roster10A) {
+          const name = (r.name || "Unknown").trim();
+          rosterByName[name] = {
+            gender: (r.gender || "-").toString().trim() || "-",
+            pointsLeft: r.pointsLeft ?? "-"
+          };
+        }
+
+        const tbody = document.querySelector(".class-table tbody");
+        const searchInput = document.getElementById("studentSearch");
+
+        const studentNames = Object.keys(rosterByName).sort((a, b) =>
+          a.toLowerCase().localeCompare(b.toLowerCase())
+        );
+
+        function buildTable(nameList) {
+          tbody.innerHTML = "";
+
+          nameList.forEach((name, index) => {
+            const info = rosterByName[name];
+            const gender = info.gender || "-";
+            const currentPoints = info.pointsLeft ?? "-";
+
+            const studentViolations = violationRowsAll.filter((row) => {
+              const rowName  = (row.name || "").trim();
+              const rowClass = (row["class"] || "").toString().toUpperCase().trim();
+              return rowName === name && rowClass === "10A";
+            });
+
+            // cek apakah ada pelanggaran "beneran" (bukan baris kosong)
+            const hasRealViolation = studentViolations.some((r) => {
+              const hasReason   = r.reason    && r.reason.trim()    !== "";
+              const hasViolText = r.violation && r.violation.trim() !== "";
+              const hasDate     = r.date      && r.date.trim()      !== "";
+              const hasTime     = r.time      && r.time.trim()      !== "";
+              return hasReason || hasViolText || hasDate || hasTime;
+            });
+
+            const tr = document.createElement("tr");
+            tr.classList.add("student-row");
+            tr.innerHTML = `
+              <td>${index + 1}</td>
+              <td>
+                <span class="student-name-cell">
+                  <span>${name}</span>
+                  ${
+                    hasRealViolation
+                      ? '<span class="violation-flag" title="Has violations">!</span>'
+                      : ""
+                  }
+                </span>
+              </td>
+              <td>${gender}</td>
+              <td class="action-cell">
+                <button class="nav-btn nav-btn-outline violation-toggle" data-open="false">
+                  Show Violations
+                </button>
+              </td>
+            `;
+            tbody.appendChild(tr);
+
+            const detailTr = document.createElement("tr");
+            detailTr.classList.add("violations-row");
+            detailTr.style.display = "none";
+            detailTr.innerHTML = `
+              <td colspan="4">
+                <div class="violations-card">
+                  <h4>Violations for ${name}</h4>
+                  <table class="violations-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Violation</th>
+                        <th>Change</th>
+                        <th>Points</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </td>
+            `;
+            tbody.appendChild(detailTr);
+
+            const btn = tr.querySelector(".violation-toggle");
+            const detailBody = detailTr.querySelector(".violations-table tbody");
+
+            btn.addEventListener("click", () => {
+              const isOpen = btn.getAttribute("data-open") === "true";
+              if (isOpen) {
+                detailTr.style.display = "none";
+                btn.textContent = "Show Violations";
+                btn.classList.remove("btn-hide");
+                btn.setAttribute("data-open", "false");
+              } else {
+                renderViolations(detailBody, studentViolations, currentPoints);
+                detailTr.style.display = "table-row";
+                btn.textContent = "Hide Violations";
+                btn.classList.add("btn-hide");
+                btn.setAttribute("data-open", "true");
+              }
+            });
+          });
+        }
+
+        buildTable(studentNames);
+
+        if (searchInput) {
+          searchInput.addEventListener("input", () => {
+            const term = searchInput.value.toLowerCase().trim();
+            const filteredNames = term
+              ? studentNames.filter((n) => n.toLowerCase().includes(term))
+              : studentNames;
+            buildTable(filteredNames);
+          });
+        }
+
+        // inisialisasi panel riwayat global
+        initGlobalViolationHistory(violationRowsAll);
+
+        console.log("✅ Loaded roster 10A + violations:", { rosterByName, violationRowsAll });
+      } catch (err) {
+        console.error("Error baca data Sheety:", err);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadClass10AFromSheety);
+  </script>
+</body>
+</html>

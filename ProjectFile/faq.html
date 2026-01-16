@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FAQ – Eduvision</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="auth.js" defer></script>
+
+  <style>
+    /* ========== PAGE STYLE ========== */
+    .faq-wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      position: relative;
+      z-index: 1; /* biar di atas hero-bg-pattern */
+    }
+
+    .faq-title {
+      font-size: 42px;
+      font-weight: 700;
+      color: #003B73;
+      margin-bottom: 40px;
+    }
+
+    .faq-box {
+      background: linear-gradient(180deg, #CFE6FF, #E4F1FF);
+      border-radius: 40px;
+      padding: 35px 40px;
+      margin-bottom: 80px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .faq-text h2 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #003B73;
+      margin-bottom: 18px;
+    }
+
+    .faq-text p {
+      font-size: 18px;
+      font-weight: 400;
+      color: #003A5D;
+      line-height: 1.6;
+    }
+
+    .faq-img img {
+      width: 260px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    @media (max-width: 820px) {
+      .faq-box {
+        flex-direction: column;
+        text-align: center;
+      }
+      .faq-img img {
+        width: 220px;
+      }
+      .faq-title {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body class="inner-page">
+
+  <!-- NAVBAR (disamakan struktur & auth dengan index) -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <a href="index.html#home" class="logo-link">
+        <img src="images/logo-bar.png" alt="Kanaan Logo" class="logo-bar" />
+      </a>
+    </div>
+
+    <nav class="navbar-center">
+      <a href="index.html#home" class="nav-link">
+        <span class="nav-icon"></span> HOME
+      </a>
+      <a href="index.html#about" class="nav-link">CLASS</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">ABOUT US</a>
+    </nav>
+
+    <div class="navbar-right">
+      <div class="nav-auth-buttons">
+        <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
+        <a href="signin.html" class="nav-btn nav-btn-solid">Sign In</a>
+      </div>
+      <div class="nav-user-info">
+        <span class="nav-user-name"></span>
+        <span class="nav-user-email"></span>
+        <button type="button" class="nav-logout" onclick="handleLogout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO BG SAMA SEPERTI INDEX -->
+  <main id="home" class="hero">
+    <div class="hero-bg-pattern"></div>
+
+    <section class="faq-wrapper">
+
+      <a href="index.html#home" class="back-btn" style="
+        display:inline-block; 
+        padding:8px 18px;
+        background:#003B73;
+        color:white;
+        font-weight:600;
+        border-radius:8px;
+        text-decoration:none;
+        margin-bottom:25px;">
+        BACK
+      </a>
+
+      <h1 class="faq-title">FAQ</h1>
+
+      <!-- ========== SECTION 1 ========== -->
+      <div class="faq-box">
+        <div class="faq-img">
+          <img src="images/gambr1faq.png" alt="What is EduVision illustration">
+        </div>
+        <div class="faq-text">
+          <h2>WHAT’S EDUVISION?</h2>
+          <p>
+            EduVision is an AI-powered school monitoring system designed to detect
+            student violations in real time, automatically deducting points whenever
+            a rule is broken.
+          </p>
+        </div>
+      </div>
+
+      <!-- ========== SECTION 2 ========== -->
+      <div class="faq-box">
+        <div class="faq-text">
+          <h2>WHAT ACTIONS CAN CAUSE STUDENTS TO LOSE POINTS?</h2>
+          <p>
+            Missing tie, missing belt, and non-black shoes (if visible)
+            are some examples of uniform violations that can be detected by the system.
+          </p>
+        </div>
+        <div class="faq-img">
+          <img src="images/gambr2faq.png" alt="Uniform violations illustration">
+        </div>
+      </div>
+
+      <!-- ========== SECTION 3 ========== -->
+      <div class="faq-box">
+        <div class="faq-img">
+          <img src="images/gambr3faq.png" alt="Points deduction illustration">
+        </div>
+        <div class="faq-text">
+          <h2>HOW MANY POINTS WILL BE DEDUCTED?</h2>
+          <p>
+            Every detected violation will automatically deduct <strong>2 points</strong>,
+            following the school regulation standard.
+          </p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2025 Eduvision – Kanaan School. All rights reserved.
+  </footer>
+
+</body>
+</html>

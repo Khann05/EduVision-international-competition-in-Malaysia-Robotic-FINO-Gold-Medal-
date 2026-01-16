@@ -1,0 +1,775 @@
+:root {
+  --primary: #236b7f;
+  --primary-dark: #1b5363;
+  --bg: #e9f2f8;
+  --white: #ffffff;
+  --text: #163046;
+  --radius-large: 26px;
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+
+  /* supaya footer selalu di bawah */
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===================================== */
+/* NAVBAR                                */
+/* ===================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 60px;
+  background: rgba(233, 242, 248, 0.92);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+}
+
+.logo-bar {
+  height: 48px;
+  object-fit: contain;
+}
+
+.logo-link {
+  display: inline-block;
+}
+
+.navbar-center {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 600;
+  font-size: 0.98rem;
+  text-decoration: none;
+  color: #385c71;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link.active {
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.18);
+}
+
+.nav-link:hover {
+  color: var(--primary-dark);
+}
+
+.nav-icon {
+  font-size: 1rem;
+}
+
+/* kanan navbar */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* tombol login / sign in */
+.nav-auth-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-btn {
+  padding: 8px 20px;
+  border-radius: 16px;
+  border: 2px solid var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn-outline {
+  background: transparent;
+  color: var(--primary);
+}
+
+.nav-btn-outline:hover {
+  background: rgba(35, 107, 127, 0.08);
+}
+
+.nav-btn-solid {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.nav-btn-solid:hover {
+  background: var(--primary-dark);
+}
+
+/* info user saat sudah login */
+.nav-user-info {
+  display: none; /* muncul kalau sudah login (di-set dari JS) */
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.85rem;
+}
+
+.nav-user-name {
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.nav-user-email {
+  font-size: 0.78rem;
+  color: #4a6a7f;
+}
+
+.nav-logout {
+  margin-top: 2px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 0.75rem;
+  color: #c0392b;
+  cursor: pointer;
+}
+
+.nav-logout:hover {
+  text-decoration: underline;
+}
+
+/* ===================================== */
+/* HERO                                  */
+/* ===================================== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 36px 60px 40px;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero-bg-pattern {
+  position: fixed;
+  inset: 0;
+  background-image: url("images/bg-pattern.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.55;
+  z-index: -1;
+}
+
+.hero-title-stack {
+  display: grid;
+  gap: 6px;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #1f6479;
+  text-transform: uppercase;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+}
+
+.hero-title-stack span {
+  text-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.hero-students {
+  position: relative;
+  margin-top: -10px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-students img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 32px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.hero-tagline {
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 0.98rem;
+  color: #2d5264;
+}
+
+/* ===================================== */
+/* TEACHERS SECTION (kartu bermotif)     */
+/* ===================================== */
+
+.teachers-section {
+  padding: 30px 60px 60px;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #29546a;
+  margin-bottom: 26px;
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.teacher-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 22px 32px;
+  border-radius: 40px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+
+  /* motif + gradasi biru */
+  background-image:
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(181, 210, 245, 0.96)),
+    url("images/bg-pattern.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.teacher-photo img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.22);
+}
+
+.teacher-info {
+  flex: 1;
+}
+
+.teacher-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #163046;
+  margin-bottom: 6px;
+}
+
+.teacher-role {
+  font-size: 0.96rem;
+  color: #6d8194;
+  margin-bottom: 14px;
+}
+
+.class-badge {
+  display: inline-block;
+  padding: 10px 26px;
+  background: #236b7f;
+  color: #ffffff;
+  border-radius: 18px;
+  font-weight: 700;
+  font-size: 1.02rem;
+  text-decoration: none;
+  letter-spacing: 0.09em;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.3);
+}
+
+.class-badge:hover {
+  background: #1b5363;
+}
+
+/* ===================================== */
+/* FAQ + FOOTER                          */
+/* ===================================== */
+
+.faq-section {
+  padding: 40px 60px 50px;
+}
+
+.faq-text {
+  max-width: 720px;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #476476;
+}
+
+/* Footer hanya teks, background dari motif global */
+.footer {
+  margin-top: auto;
+  padding: 18px 60px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #4d6677;
+}
+
+/* ===================================== */
+/* CLASS PAGE (DATA SISWA)               */
+/* ===================================== */
+
+.inner-page .hero-bg-pattern {
+  opacity: 0.5;
+}
+
+.class-page {
+  padding: 30px 60px 60px;
+  position: relative;
+}
+
+.class-header {
+  margin-bottom: 24px;
+}
+
+.class-header h1 {
+  font-size: 1.9rem;
+  margin-bottom: 4px;
+  color: #255067;
+}
+
+.class-header p {
+  font-size: 0.95rem;
+  color: #4a6a7f;
+  margin-bottom: 10px;
+}
+
+.back-link {
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.class-table-wrapper {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 24px;
+  box-shadow: var(--shadow-soft);
+  padding: 20px 24px;
+  overflow-x: auto;
+}
+
+.class-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.class-table thead {
+  background: #d1e5f5;
+}
+
+.class-table th,
+.class-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #d7e2ec;
+  text-align: left;
+}
+
+.class-table th {
+  font-weight: 600;
+  color: #27485e;
+}
+
+.class-table tbody tr:nth-child(even) {
+  background: #f3f7fb;
+}
+
+/* ===================================== */
+/* ABOUT PAGE                            */
+/* ===================================== */
+
+.about-page {
+  padding: 30px 60px 60px;
+  position: relative;
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.back-btn {
+  display: inline-block;
+  padding: 10px 24px;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.back-btn:hover {
+  background: var(--primary-dark);
+}
+
+.about-header h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #255067;
+}
+
+.about-card {
+  margin-top: 10px;
+  background: radial-gradient(circle at top left, #d8ebff, #c2ddff);
+  padding: 28px 34px;
+  border-radius: 40px;
+  box-shadow: var(--shadow-soft);
+  max-width: 1000px;
+}
+
+.about-card p {
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: #21445a;
+  margin-bottom: 12px;
+}
+
+.about-card p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===================================== */
+/* AUTH PAGES (LOGIN & SIGNIN)           */
+/* ===================================== */
+
+.auth-page {
+  padding: 40px 60px 60px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 32px;
+  box-shadow: var(--shadow-soft);
+  padding: 26px 30px 30px;
+}
+
+.auth-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #255067;
+  margin-bottom: 4px;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  color: #4a6a7f;
+  margin-bottom: 18px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #325067;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.auth-form input {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #c3d5e2;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.auth-form input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(35, 107, 127, 0.2);
+}
+
+.auth-submit {
+  margin-top: 6px;
+  padding: 10px 0;
+  border: none;
+  border-radius: 12px;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+}
+
+.auth-submit:hover {
+  background: var(--primary-dark);
+}
+
+.auth-footer-text {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #4a6a7f;
+}
+
+.auth-footer-text a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* pesan error / sukses */
+.form-message {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  min-height: 18px;
+  color: #236b7f;
+}
+
+.form-message.error {
+  color: #c0392b;
+}
+
+.form-message.success {
+  color: #1b7f4a;
+}
+
+/* password toggle */
+.password-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.password-input-wrapper input {
+  flex: 1;
+}
+
+.password-toggle {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #c3d5e2;
+  background: #eef4f8;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  background: #dde9f2;
+}
+
+/* ===================================== */
+/* RESPONSIVE                            */
+/* ===================================== */
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 10px 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .navbar-center {
+    order: 3;
+  }
+
+  .hero {
+    padding: 20px 18px 30px;
+  }
+
+  .teachers-section,
+  .faq-section,
+  .class-page,
+  .about-page,
+  .auth-page {
+    padding: 26px 18px 40px;
+  }
+
+  .teacher-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-card {
+    padding: 18px 22px;
+    border-radius: 28px;
+  }
+
+  .teacher-photo img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .hero-students img {
+    border-radius: 24px;
+  }
+
+  .about-card {
+    padding: 22px 20px;
+    border-radius: 28px;
+  }
+
+  .footer {
+    padding: 16px 18px;
+  }
+}
+/* STYLE TABEL DASHBOARD KELAS */
+
+.class-table th:first-child,
+.class-table td:first-child {
+  width: 40px;
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.student-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background-color: #dfe8f3;
+  background-size: cover;
+  background-position: center;
+}
+
+.student-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.points-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.edit-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  background: #2f80ff;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.edit-btn:hover {
+  background: #1c5fd1;
+}
+
+.points-value {
+  font-weight: 600;
+}
+
+.about-hero-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.about-hero-page .hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: url("images/bg-pattern.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.45;
+  z-index: 0;
+}
+
+.hero-figure {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.person-photo {
+  width: clamp(350px, 45vw, 800px);
+  object-fit: contain;
+  filter: drop-shadow(0 25px 50px rgba(0,0,0,0.25));
+}
+
+.about-header {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 60px 10px;
+}
+
+.about-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #1f6479;
+}
+
+.hero-card-wrapper {
+  position: relative;
+  z-index: 4;
+  width: min(900px, 90%);
+  margin: 220px auto 80px;
+  text-align: center;
+}
+
+.hero-card-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  margin-bottom: 20px;
+  letter-spacing: 0.15em;
+}
+
+.hero-card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(6px);
+  padding: 30px 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+}

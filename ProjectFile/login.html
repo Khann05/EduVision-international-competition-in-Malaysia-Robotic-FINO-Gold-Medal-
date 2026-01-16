@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login – Eduvision</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="auth.js" defer></script>
+</head>
+<body class="inner-page">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <a href="index.html#home" class="logo-link">
+        <img src="images/logo-bar.png" alt="Kanaan Logo" class="logo-bar" />
+      </a>
+    </div>
+    <nav class="navbar-center">
+      <a href="index.html#home" class="nav-link">
+        <span class="nav-icon"></span> HOME
+      </a>
+      <!-- ✅ CLASS: ke Homeroom Teachers -->
+      <a href="index.html#about" class="nav-link">
+        CLASS
+      </a>
+      <a href="index.html#faq" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link">ABOUT US</a>
+    </nav>
+    <div class="navbar-right">
+      <div class="nav-auth-buttons">
+        <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
+        <a href="signin.html" class="nav-btn nav-btn-solid">Sign In</a>
+      </div>
+      <div class="nav-user-info">
+        <span class="nav-user-name"></span>
+        <span class="nav-user-email"></span>
+        <button type="button" class="nav-logout" onclick="handleLogout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="hero-bg-pattern"></div>
+
+    <section class="auth-card">
+      <h1 class="auth-title">Login</h1>
+      <p class="auth-subtitle">Enter your account to access Eduvision dashboard.</p>
+
+      <form class="auth-form" onsubmit="handleLogin(event)">
+        <label>
+          Email
+          <input type="email" name="email" required placeholder="you@example.com">
+        </label>
+
+        <label>
+          Password
+          <div class="password-input-wrapper">
+            <input
+              type="password"
+              name="password"
+              id="login-password"
+              required
+              placeholder="••••••••">
+            <button
+              type="button"
+              class="password-toggle"
+              onclick="togglePassword('login-password', this)">
+              Show
+            </button>
+          </div>
+        </label>
+
+        <button type="submit" class="auth-submit">Login</button>
+
+        <p class="auth-footer-text">
+          Don’t have an account?
+          <a href="signin.html">Create one</a>
+        </p>
+
+        <p class="form-message"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2025 Eduvision – Kanaan School. All rights reserved.
+  </footer>
+</body>
+</html>

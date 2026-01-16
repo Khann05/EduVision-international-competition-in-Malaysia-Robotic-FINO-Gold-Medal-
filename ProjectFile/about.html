@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us – Eduvision</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="auth.js" defer></script>
+</head>
+
+<body class="inner-page about-hero-page">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="navbar-left">
+      <a href="index.html#home" class="logo-link">
+        <img src="images/logo-bar.png" alt="Kanaan Logo" class="logo-bar" />
+      </a>
+    </div>
+
+    <nav class="navbar-center">
+      <a href="index.html#home" class="nav-link">HOME</a>
+      <a href="index.html#about" class="nav-link">CLASS</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+      <a href="about.html" class="nav-link active">ABOUT US</a>
+    </nav>
+
+    <div class="navbar-right">
+      <div class="nav-auth-buttons">
+        <a href="login.html" class="nav-btn nav-btn-outline">Login</a>
+        <a href="signin.html" class="nav-btn nav-btn-solid">Sign In</a>
+      </div>
+      <div class="nav-user-info">
+        <span class="nav-user-name"></span>
+        <span class="nav-user-email"></span>
+        <button type="button" class="nav-logout" onclick="handleLogout()">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="about-page">
+
+    <!-- BACKGROUND -->
+    <div class="hero-bg-pattern"></div>
+
+    <!-- FOTO KEPSEK BARU -->
+    <div class="hero-figure">
+      <img src="images/kepsek.png" alt="Principal" class="person-photo">
+    </div>
+
+    <!-- JUDUL -->
+    <section class="about-header">
+      <a href="index.html#home" class="back-btn">BACK</a>
+      <h1 class="about-title">ABOUT US</h1>
+    </section>
+
+    <!-- CARD -->
+    <section class="hero-card-wrapper">
+
+      <h2 class="hero-card-title">EDUVISION</h2>
+
+      <div class="hero-card">
+        <p>
+          EduVision is an AI-powered school monitoring system designed to detect
+          uniform violations in real time. Using smart camera technology,
+          EduVision identifies issues such as non-black shoes, missing belts,
+          and the absence of a tie.
+        </p>
+
+        <p>
+          When a violation occurs, the system automatically deducts points from
+          the student's record, creating a fair and consistent disciplinary
+          process. EduVision helps schools maintain order more efficiently by
+          combining accuracy, automation, and transparency.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    © 2025 Eduvision – Kanaan School. All rights reserved.
+  </footer>
+
+</body>
+</html>
